@@ -7,7 +7,7 @@ import styles from "./TopHeadlines.style";
 import axios from "axios";
 import Skeleton from "../Skeleton";
 
-const BASE_URL = `https://newsapi.org/v2/top-headlines`;
+import { NEWS_API_URL, NEWS_API_KEY } from "@env";
 const categories = [
   "business",
   "entertainment",
@@ -16,7 +16,6 @@ const categories = [
   "sports",
   "technology",
 ];
-const API_KEY = "60e3dc77afe74bf2b40cef120734db17";
 
 const TopHeadlines = ({ navigation }) => {
   const [articles, setArticles] = useState([]);
@@ -25,9 +24,9 @@ const TopHeadlines = ({ navigation }) => {
 
   useEffect(() => {
     axios
-      .get(BASE_URL, {
+      .get(`${NEWS_API_URL}top-headlines`, {
         headers: {
-          "X-Api-Key": API_KEY,
+          "X-Api-Key": NEWS_API_KEY,
           Accept: "apllication/json",
         },
         params: {
