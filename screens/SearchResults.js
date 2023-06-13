@@ -18,13 +18,27 @@ const SearchResults = ({ navigation, route }) => {
         },
         params: {
           q: searchQuery,
-          from:
-            filters.from.touched && new Date(filters.from.value).toISOString(),
-          to: filters.to.touched && new Date(filters.to.value).toISOString(),
+          from: filters.from.touched
+            ? new Date(filters.from.value).toISOString()
+            : null,
+          to: filters.to.touched
+            ? new Date(filters.to.value).toISOString()
+            : null,
           sortBy: filters.sortBy.touched && filters.sortBy.value,
         },
       })
-      .then(({ data }) => setArticles((cur) => [...cur, ...data.articles]));
+      .then(({ data }) => {
+        if (data.status === "ok") {
+          data.totalResults > 0
+            ? setArticles((cur) => [...cur, ...data.articles])
+            : navigation.navigate("Error", {
+                msg: "No articles found for this search query.",
+              });
+        }
+      })
+      .catch(({ response }) =>
+        navigation.navigate("Error", { msg: response.data.message })
+      );
   }, []);
 
   return (

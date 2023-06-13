@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   Text,
   SafeAreaView,
@@ -10,38 +10,31 @@ import {
 import PlaceCard from "../components/PlaceCard";
 import Skeleton from "../components/Skeleton";
 import axios from "axios";
-
+import { LocationContext } from "../App";
 import { PLACES_API_URL, PLACES_API_KEY } from "@env";
 
 const NearbySpots = ({ route }) => {
   const [places, setPlaces] = useState([]);
-
-  const {
-    category,
-    c_id,
-    location: {
-      coords: { latitude, longitude },
-    },
-  } = { ...route.params };
+  const location = useContext(LocationContext);
+  const { category, c_id } = { ...route.params };
 
   useEffect(() => {
-    axios
-      .get(PLACES_API_URL, {
-        headers: {
-          Authorization: PLACES_API_KEY,
-          Accept: "application/json",
-        },
-        params: {
-          ll: `${latitude},${longitude}`,
-          categories: c_id,
-          fields: "name,categories,location,distance",
-          limit: 50,
-        },
-      })
-      .then(({ data }) => {
-        console.log(data), setPlaces((cur) => [...cur, ...data.results]);
-      });
-  }, []);
+    location &&
+      axios
+        .get(PLACES_API_URL, {
+          headers: {
+            Authorization: PLACES_API_KEY,
+            Accept: "application/json",
+          },
+          params: {
+            ll: `${location?.coords?.latitude},${location?.coords?.longitude}`,
+            categories: c_id,
+            fields: "name,categories,location,distance",
+            limit: 50,
+          },
+        })
+        .then(({ data }) => setPlaces((cur) => [...cur, ...data.results]));
+  }, [location]);
 
   return (
     <SafeAreaView style={styles.container}>

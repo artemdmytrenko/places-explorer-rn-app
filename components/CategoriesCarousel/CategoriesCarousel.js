@@ -10,7 +10,7 @@ const CategoriesCarousel = ({ navigation, location }) => {
   };
 
   const handlePress = (category, c_id) => {
-    navigation.navigate("Nearby Spots", { category, c_id, location });
+    navigation.navigate("Nearby Spots", { category, c_id });
   };
 
   return (

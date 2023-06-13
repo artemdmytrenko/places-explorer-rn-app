@@ -30,6 +30,10 @@
     },
     "extra": {
       "eas": {
+        
+        "PLACES_API_KEY": "fsq3oP9jwbYtogfsgFn2BBDV4fJC/4ag8rlsVW8zGX0RWjk=",
+        "NEWS_API_URL": "https://newsapi.org/v2/",
+        "NEWS_API_KEY": "60e3dc77afe74bf2b40cef120734db17",
         "projectId": "2e922adc-8cb7-4dd5-9724-f81aec211049"
       }
     }

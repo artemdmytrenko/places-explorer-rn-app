@@ -1,38 +1,15 @@
-import {
-  SafeAreaView,
-  Text,
-  StyleSheet,
-  ScrollView,
-  SectionList,
-} from "react-native";
-import { useEffect, useState } from "react";
-import * as Location from "expo-location";
+import { SafeAreaView, Text, StyleSheet, ScrollView } from "react-native";
 import SearchBar from "../components/SearchBar";
 import TopHeadlines from "../components/TopHeadlines";
 import CategoriesCarousel from "../components/CategoriesCarousel";
 
 const Home = ({ navigation }) => {
-  const [location, setLocation] = useState({});
-
-  useEffect(() => {
-    const getPermissions = async () => {
-      let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== "granted") {
-        return;
-      }
-      let currentLocation = await Location.getCurrentPositionAsync({});
-      setLocation(currentLocation);
-      console.log(currentLocation);
-    };
-    getPermissions();
-  }, []);
-
   return (
     <SafeAreaView>
       <ScrollView style={styles.container}>
         <Text style={styles.header}>Test Task</Text>
         <SearchBar navigation={navigation} />
-        <CategoriesCarousel navigation={navigation} location={location} />
+        <CategoriesCarousel navigation={navigation} />
         <TopHeadlines navigation={navigation} />
       </ScrollView>
     </SafeAreaView>
