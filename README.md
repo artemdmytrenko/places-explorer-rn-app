@@ -1,5 +1,7 @@
 # Places Explorer App
 
+[Android .apk download file
+](https://drive.google.com/drive/folders/1GdXd1ZNagYAqdt2ctTcHgOD2c6y6Whk_?usp=sharing)
 ## Lo-Fi Design
 ![IMG_2342](https://github.com/artemdmytrenko/teamvoy-test-task/assets/125161004/b7a6d950-6823-4b3c-b4f3-0a0f308d0987)
 
