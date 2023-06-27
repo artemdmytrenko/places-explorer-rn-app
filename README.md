@@ -1,4 +1,4 @@
-# Restaurants Explorer App
+# Places Explorer App
 
 ## Lo-Fi Design
 ![IMG_2342](https://github.com/artemdmytrenko/teamvoy-test-task/assets/125161004/b7a6d950-6823-4b3c-b4f3-0a0f308d0987)
